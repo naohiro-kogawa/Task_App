@@ -57,16 +57,30 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  font-style: italic;
 }
 
 #logo:hover {
-  color: #fff;
+  color: gray;
   text-decoration: none;
 }
+
+.navbar-inverse {
+    background-color: #008000;
+    border-color: #008000;
+}
+
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
 
 /* デバッグウインドウ */
 
