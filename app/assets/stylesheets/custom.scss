@@ -74,12 +74,26 @@ p {
     border-color: #008000;
 }
 
-
 .navbar-inverse .navbar-nav > li > a {
     color: #FFFFFF;
     font-weight: bold;
+    &:hover {
+     color: gray;
+     text-decoration: none;
+  }
 }
 
+// ドロップダウンメニュー //
+.dropdown {
+  ::selection {
+  background-color: #008000;
+} 
+}
+
+// ドロップダウンメニュー反転色なし設定 //
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #008000;
+}
 
 
 /* デバッグウインドウ */
