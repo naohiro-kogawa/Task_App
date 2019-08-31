@@ -1,31 +1,33 @@
 <% provide(:title, "Top") %>
-<div class="jumbotron">
-  <h1>サンプルアプリ</h1>
-  <p>
-    皆さんの手で、この最低限の土台となるアプリケーションから<br>
-    タスク管理機能を持ったアプリケーションへと作り替えていきましょう！
-  </p>
+<div class="row">
+  
+  <div class="col-md-7">
+    <div class="center jumbotron" id="top-main">
+      <h1 id="top-main-title">TaskApp</h1>
+      <p>TaskAppは簡易ToDo管理ツールです。</p>
+      <p>↓↓初めてのご利用↓↓</p>
+        <a class="btn btn-lg btn-success" href="/signup">アカウント作成</a>
+        <div style="margin-top: 10px;">
+          <a class="btn btn-danger" href="/guest-admin/login">ゲストログイン（管理権限）</a>
+          <a class="btn btn-warning" href="/guest/login">ゲストログイン（一般権限）</a>
+        </div>
+    </div>
+  </div>
 
-  <p>現在このアプリケーションには、以下の機能が備わっています。</p>
-
-  <ul>
-    <li>ルートURLに対応したトップページ（このページです）</li>
-    <li>ユーザー機能
-      <ol>
-        <li>名前・メールアドレス・パスワード・ログイン認証用のカラムを持ったUserモデル</li>
-        <li>ユーザー新規登録と対応したページ</li>
-      </ol>
-    </li>
-    <li>ログイン機能
-      <ol>
-        <li>セッションによる一時的ログイン機能</li>
-        <li>Cookiesによる永続的ログイン機能</li>
-      </ol>
-    </li>
-  </ul>
-  <p>実質【勤怠チュートリアル第７章】までの機能を持ったアプリケーションとなります。</p>
-  <center>
-    <%= link_to "Sign Up", signup_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to "Log In", login_path, class: "btn btn-lg btn-primary" %>
-  </center>
+  <div class="col-md-4">
+    <h1>ログイン</h1>
+    <form action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="k1klkofI96pThfRzHwaZEBaKlXkEZz6YuYPFDUG/kE9X22woe0BLQyAIK4RfYKB9NWcUUO/JTg2XagZmPogUvA==">
+        <label class="label-form" for="session_email">メールアドレス</label>
+        <input class="form-control" type="email" name="session[email]">
+  
+        <label class="label-form" for="session_password">パスワード</label>
+        <input class="form-control" type="password" name="session[password]">
+        
+        <label class="checkbox inline checkbox-login" for="remember-me">
+          <input name="session[remember_me]" type="hidden" value="0"><input id="remember-me" type="checkbox" value="1" name="session[remember_me]">
+          <span>ログイン情報を記憶する</span>
+        </label>        
+        <input type="submit" name="commit" value="ログイン" class="btn btn-primary btn-block btn-form" data-disable-with="ログイン">
+     </form> 
+  </div>
 </div>
