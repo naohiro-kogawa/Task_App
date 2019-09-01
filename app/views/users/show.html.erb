@@ -9,7 +9,7 @@
     <table class="table table-bordered" id="table-user">
       <tbody><tr>
         <th class="active col-md-3">ID</th>
-        <td class="col-md-9">1</td>
+        <td><%= @user.user_id %></td>
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :name %></th>
@@ -27,9 +27,3 @@
      </table>
    </div>    
 </div>
-
-      
-    </div>
-  
-
-</body>
