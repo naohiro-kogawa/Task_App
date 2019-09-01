@@ -1,4 +1,4 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, 'ゲスト管理者') %>
 
 <div class="container">
       
@@ -9,19 +9,19 @@
     <table class="table table-bordered" id="table-user">
       <tbody><tr>
         <th class="active col-md-3">ID</th>
-        <td><%= (params[:id]) %></td>
+        <td>2</td>
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :name %></th>
-        <td><%= @user.name %></td>
+        <td>ゲスト管理者</td>
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :email %></th>
-        <td><%= @user.email %></td>
+        <td>guest-admin@email.com</td>
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :created_at %></th>
-        <td><%= @user.created_at %></td>
+        <td>2019/09/01 23:21</td>
       </tr>
       </tbody>
      </table>
