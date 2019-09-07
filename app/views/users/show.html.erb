@@ -1,16 +1,13 @@
 <% provide(:title, @user.name) %>
 
-<div class="container">
-      
 <h1>プロフィール</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <table class="table table-bordered" id="table-user">
-      <tbody>
-        <tr>
-        <th class="active col-md-3">ID</th>
-        <td><%= (params[:id]) %></td>
+      <tr>
+        <th class="active col-md-3"><%= User.human_attribute_name :id %></th>
+        <td class="col-md-9"><%= @user.id %></td>
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :name %></th>
@@ -22,9 +19,8 @@
       </tr>
       <tr>
         <th class="active"><%= User.human_attribute_name :created_at %></th>
-        <td><%= @user.created_at %></td>
+        <td><%= l(@user.created_at, format: :long) %></td>
       </tr>
-      </tbody>
-     </table>
-   </div>    
+    </table>
+  </div>    
 </div>

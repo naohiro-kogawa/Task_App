@@ -1,4 +1,5 @@
 <% provide(:title, "Top") %>
+
 <div class="row">
   
   <div class="col-md-7">
@@ -6,28 +7,43 @@
       <h1 id="top-main-title">TaskApp</h1>
       <p>TaskAppは簡易ToDo管理ツールです。</p>
       <p>↓↓初めてのご利用↓↓</p>
-        <a class="btn btn-lg btn-success" href="/signup">アカウント作成</a>
+      <% if logged_in? %>
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success #{"disabled" unless current_user.admin?}" %>
+      <% else %>
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
         <div style="margin-top: 10px;">
           <a class="btn btn-danger" href="/guest-admin/login">ゲストログイン（管理権限）</a>
           <a class="btn btn-warning" href="/guest/login">ゲストログイン（一般権限）</a>
         </div>
-    </div>
+      <% end %>
+   </div>
   </div>
 
   <div class="col-md-4">
     <h1>ログイン</h1>
-    <form action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="k1klkofI96pThfRzHwaZEBaKlXkEZz6YuYPFDUG/kE9X22woe0BLQyAIK4RfYKB9NWcUUO/JTg2XagZmPogUvA==">
-        <label class="label-form" for="session_email">メールアドレス</label>
-        <input class="form-control" type="email" name="session[email]">
+    <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+      <% if logged_in? %>
+        <%= f.label :email, t("sessions.new.email"), class: "label-form" %>
+        <%= f.email_field :email, class: 'form-control', readonly: true %>
   
-        <label class="label-form" for="session_password">パスワード</label>
-        <input class="form-control" type="password" name="session[password]">
+        <%= f.label :password, t("sessions.new.password"), class: "label-form" %>
+        <%= f.password_field :password, class: 'form-control', readonly: true %>
         
-        <label class="checkbox inline checkbox-login" for="remember-me">
-          <input name="session[remember_me]" type="hidden" value="0"><input id="remember-me" type="checkbox" value="1" name="session[remember_me]">
+        <%= f.submit "ログイン状態です", class: "btn btn-primary btn-block btn-form", disabled: "disabled" %>
+      <% else %>
+        <%= f.label :email, t("sessions.new.email"), class: "label-form" %>
+        <%= f.email_field :email, class: 'form-control' %>
+  
+        <%= f.label :password, t("sessions.new.password"), class: "label-form" %>
+        <%= f.password_field :password, class: 'form-control' %>
+        
+        <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+          <%= f.check_box :remember_me, id: "remember-me" %>
           <span>ログイン情報を記憶する</span>
-        </label>        
-        <input type="submit" name="commit" value="ログイン" class="btn btn-primary btn-block btn-form" data-disable-with="ログイン">
-</form>  
-</div>
+        <% end %>
+        
+        <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-form" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
