@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   get    '/guest-admin/login', to: 'static_pages#guest_admin'
   get    '/guest/login', to: 'static_pages#guest_user'
   
-  resources :users
+  resources :users do
+    resources :tasks
+  end  
 end
