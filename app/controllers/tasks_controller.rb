@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   
   def show
     @user = User.find(params[:user_id])
-    
+    @task = @user.tasks.find_by(id: params[:id])
   end
   
   def new     # タスク新規作成ページ
@@ -34,6 +34,7 @@ class TasksController < ApplicationController
   
   def update  #　タスクの更新
       @user = User.find(params[:user_id])
+      @task = @user.tasks.find_by(id: params[:id])
     if @task.update_attributes(task_params)
       flash[:success] = "タスクを更新しました。"
       redirect_to user_task_url(@user, @task)
