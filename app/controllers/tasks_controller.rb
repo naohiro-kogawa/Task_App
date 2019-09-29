@@ -6,6 +6,11 @@ class TasksController < ApplicationController
     @tasks = @user.tasks
   end
   
+  def show
+    @user = User.find(params[:user_id])
+    
+  end
+  
   def new     # タスク新規作成ページ
     @user = User.find(params[:user_id])
     @task = Task.new
@@ -22,9 +27,20 @@ class TasksController < ApplicationController
     end
   end
   
-  def edit
+  def edit  # タスクの編集
     @user = User.find(params[:user_id])
+    @task = @user.tasks.find_by(id: params[:id])
   end
+  
+  def update  #　タスクの更新
+      @user = User.find(params[:user_id])
+    if @task.update_attributes(task_params)
+      flash[:success] = "タスクを更新しました。"
+      redirect_to user_task_url(@user, @task)
+    else
+      render :edit
+    end
+  end  
   
     private
 

@@ -1,0 +1,40 @@
+<% provide(:title, @user.name) %>
+
+<h1>タスク詳細</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-bordered" id="table-task">
+      <tbody>
+        <tr>
+          <th class="active col-md-2"><%= Task.human_attribute_name :id %></th>
+          <td class="col-md-10"><%= @task.id %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :name %></th>
+          <td><%= @task.name %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :description %></th>
+          <td>
+            <%= auto_link(safe_join(@task.description.split("\n"), tag(:br))) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :created_at %></th>
+          <td><%= l(@task.created_at, format: :long) %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :updated_at %></th>
+          <td><%= l(@task.updated_at, format: :long) %></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div>
+      <%= link_to "編集", edit_user_task_path(@user, @task), class: "btn btn-lg btn-success" %>
+      <%= link_to "削除", user_task_path(@user, @task), method: :delete,
+      data: { confirm: "「#{@task.name}」を削除します。よろしいですか？" }, class: "btn btn-lg btn-danger" %>
+    </div>
+  </div>    
+</div>
