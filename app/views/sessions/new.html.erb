@@ -5,10 +5,10 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
 
-      <%= f.label :email, class: "label-login" %>
+      <%= f.label :email, t(".email"), class: "label-form" %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password, class: "label-login" %>
+      <%= f.label :password, t(".password"), class: "label-form" %>
       <%= f.password_field :password, class: 'form-control' %>
       
       <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
@@ -16,7 +16,7 @@
         <span>ログイン情報を記憶する</span>
       <% end %>
 
-      <%= f.submit "Log In", class: "btn btn-primary btn-block btn-login" %>
+      <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-form" %>
     <% end %>
     <p>
       ユーザー登録がまだの場合は<%= link_to "こちら", signup_path %>
