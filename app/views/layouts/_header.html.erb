@@ -6,7 +6,7 @@
         <li><%= link_to "トップ", root_path %></li>
         <% if logged_in? %>
          <%if current_user.try(:admin?)%>
-          <li><%= link_to "利用者一覧", '#' %></li>
+          <li><%= link_to "利用者一覧", users_path %></li>
         <%end%>        
           <li><%= link_to "タスク作成", new_user_task_path(current_user) %></li>
           <li class="dropdown">
