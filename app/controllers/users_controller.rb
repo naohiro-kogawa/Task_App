@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: %i(index show edit update destroy)
   before_action :admin_user, only: %i(index destroy)
   before_action :correct_user, only: %i(edit update)
+  before_action :admin_or_correct, only: %i(show)
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -52,29 +53,5 @@ class UsersController < ApplicationController
   
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
-    
-   # beforeフィルター
-
-    # ログイン済みのユーザーか確認します(E1)。
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
-    end
-    
-    
-    # アクセスしたユーザーが現在ログインしているユーザーか確認します(E3)。
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
-    
-    
-   # システム管理権限所有かどうか判定します(E2)。
-    def admin_user
-      redirect_to root_url unless current_user.admin?
     end
 end
